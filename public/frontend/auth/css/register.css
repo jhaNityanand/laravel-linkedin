@@ -1,0 +1,165 @@
+body {
+            background-color: #f3f2ef;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .register-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .linkedin-logo {
+            color: #0a66c2;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .form-control {
+            border-radius: 4px;
+            padding: 12px 15px;
+            font-size: 0.95rem;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+
+        .form-control:focus {
+            border-color: #0a66c2;
+            box-shadow: 0 0 0 0.25rem rgba(10, 102, 194, 0.25);
+        }
+
+        .btn-register {
+            background-color: #0a66c2;
+            color: #fff;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 20px;
+            border: none;
+            width: 100%;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-register:hover {
+            background-color: #004182;
+        }
+
+        .terms-text {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .terms-text a {
+            color: #0a66c2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms-text a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            margin: 25px 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background-color: #e0e0e0;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .divider span {
+            background-color: #fff;
+            padding: 0 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .btn-google, .btn-apple {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ccc;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 20px;
+            width: 100%;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-google:hover, .btn-apple:hover {
+            background-color: #f3f2ef;
+        }
+
+        .btn-google img, .btn-apple img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .sign-in-link {
+            margin-top: 25px;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .sign-in-link a {
+            color: #0a66c2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .sign-in-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 576px) {
+            .register-container {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            .linkedin-logo {
+                font-size: 2rem;
+            }
+        }
