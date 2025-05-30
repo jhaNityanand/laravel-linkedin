@@ -1,0 +1,195 @@
+/* Main content area */
+.main-content {
+    padding-top: 20px;
+}
+
+/* Card styling */
+.card {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+    margin-bottom: 15px;
+}
+
+/* Left Sidebar - Notification Categories */
+.notification-categories-card .list-group-item {
+    border: none;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.notification-categories-card .list-group-item:hover {
+    background-color: #f3f2ef;
+}
+
+.notification-categories-card .list-group-item.active {
+    background-color: #eef3f8;
+    color: #0a66c2;
+    font-weight: 600;
+    border-left: 3px solid #0a66c2;
+    padding-left: 12px;
+    /* Adjust padding for border */
+}
+
+/* Main Content - Notification List */
+.notification-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item:hover {
+    background-color: #f9f9f9;
+}
+
+.notification-item.unread {
+    background-color: #eef3f8;
+    /* Light blue background for unread */
+    font-weight: 600;
+}
+
+/* New dot for unread notifications */
+.notification-item.unread::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    /* Adjust position as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #0a66c2;
+    /* LinkedIn blue */
+    border-radius: 50%;
+}
+
+
+.notification-item .profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    background-color: #ccc;
+    /* Placeholder for profile image */
+    flex-shrink: 0;
+}
+
+.notification-item .notification-content {
+    flex-grow: 1;
+}
+
+.notification-item .notification-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #333;
+}
+
+.notification-item .notification-text strong {
+    color: #0a66c2;
+}
+
+.notification-item .timestamp {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 5px;
+    display: block;
+}
+
+.notification-item .notification-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    /* Use flex for alignment */
+    gap: 5px;
+    /* Space between buttons */
+}
+
+.notification-item .notification-actions .btn {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 1rem;
+    /* Slightly larger icons */
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.notification-item .notification-actions .btn:hover {
+    color: #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .search-bar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.5rem;
+    }
+
+    .left-sidebar {
+        margin-bottom: 20px;
+    }
+
+    .notification-categories-card .list-group-item {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .navbar-collapse {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-nav {
+        justify-content: flex-start;
+    }
+
+    .search-bar {
+        margin-right: 0;
+    }
+
+    .left-sidebar {
+        display: block;
+        /* Show filters on small screens, but stack vertically */
+        width: 100%;
+    }
+
+    .notification-item .profile-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .notification-item .notification-text {
+        font-size: 0.85rem;
+    }
+
+    .notification-item .notification-actions {
+        position: static;
+        /* Position actions normally on small screens */
+        margin-top: 10px;
+        justify-content: flex-end;
+        width: 100%;
+    }
+}

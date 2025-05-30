@@ -1,0 +1,377 @@
+/* Main content area */
+.main-content {
+    padding-top: 20px;
+}
+
+/* Card styling */
+.card {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+    margin-bottom: 15px;
+}
+
+/* Left Sidebar - Manage my network */
+.manage-network-card .list-group-item {
+    border: none;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.manage-network-card .list-group-item:hover {
+    background-color: #eef3f8;
+    color: #000;
+}
+
+.manage-network-card .list-group-item .badge {
+    background-color: transparent;
+    color: #666;
+    font-weight: normal;
+}
+
+/* Main Content - Invitations */
+.invitation-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.invitation-item:last-child {
+    border-bottom: none;
+}
+
+.invitation-item .profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #ccc;
+    /* Placeholder image */
+    flex-shrink: 0;
+}
+
+.invitation-item .invitation-info {
+    flex-grow: 1;
+}
+
+.invitation-item .invitation-info h6 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.invitation-item .invitation-info p {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.invitation-item .invitation-actions .btn {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+.invitation-item .invitation-actions .btn-outline-secondary {
+    border-color: #666;
+    color: #666;
+}
+
+.invitation-item .invitation-actions .btn-outline-secondary:hover {
+    background-color: #eef3f8;
+}
+
+.invitation-item .invitation-actions .btn-primary {
+    background-color: #0a66c2;
+    border-color: #0a66c2;
+    color: #fff;
+}
+
+.invitation-item .invitation-actions .btn-primary:hover {
+    background-color: #004182;
+    border-color: #004182;
+}
+
+/* Daily Games */
+.daily-games-card .card-body {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    /* For smooth scrolling on iOS */
+}
+
+.daily-games-card .game-item {
+    display: inline-block;
+    width: 150px;
+    /* Fixed width for each game card */
+    margin-right: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px;
+    vertical-align: top;
+    /* Align items at the top */
+}
+
+.daily-games-card .game-item:last-child {
+    margin-right: 0;
+}
+
+.daily-games-card .game-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #0a66c2;
+    /* Example color */
+}
+
+.daily-games-card .game-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    white-space: normal;
+    /* Allow text to wrap */
+}
+
+.daily-games-card .game-date {
+    font-size: 0.75rem;
+    color: #666;
+    white-space: normal;
+}
+
+.daily-games-card .btn-play {
+    background-color: transparent;
+    border: 1px solid #0a66c2;
+    color: #0a66c2;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.daily-games-card .btn-play:hover {
+    background-color: #eef3f8;
+}
+
+/* Grow your career faster (Premium Ad) */
+.premium-ad-card .close-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    color: #666;
+}
+
+.premium-ad-card .ad-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.premium-ad-card .ad-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    background-color: #ccc;
+    /* Placeholder image */
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.premium-ad-card .ad-text h6 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.premium-ad-card .ad-text p {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.premium-ad-card .btn-premium {
+    background-color: #0a66c2;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.premium-ad-card .btn-premium:hover {
+    background-color: #004182;
+}
+
+/* People you may know */
+.people-you-may-know-card .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    /* Responsive grid */
+    gap: 15px;
+    padding-top: 10px;
+}
+
+.people-you-may-know-card .profile-item {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+}
+
+.people-you-may-know-card .profile-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.people-you-may-know-card .profile-item .profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    background-color: #ccc;
+    /* Placeholder image */
+}
+
+.people-you-may-know-card .profile-item h6 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.people-you-may-know-card .profile-item p {
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.people-you-may-know-card .profile-item .btn-connect {
+    background-color: #fff;
+    border: 1px solid #0a66c2;
+    color: #0a66c2;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.people-you-may-know-card .profile-item .btn-connect:hover {
+    background-color: #eef3f8;
+}
+
+/* Success Modal */
+.success-modal .modal-content {
+    border-radius: 8px;
+    text-align: center;
+}
+
+.success-modal .modal-header {
+    border-bottom: none;
+}
+
+.success-modal .modal-body {
+    padding: 30px;
+}
+
+.success-modal .modal-body .fa-check-circle {
+    font-size: 3rem;
+    color: #28a745;
+    /* Green checkmark */
+    margin-bottom: 15px;
+}
+
+.success-modal .modal-body h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.success-modal .modal-body p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.success-modal .modal-footer {
+    border-top: none;
+    justify-content: center;
+}
+
+.success-modal .modal-footer .btn-ok {
+    background-color: #0a66c2;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 25px;
+    border-radius: 20px;
+    border: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .search-bar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.5rem;
+    }
+
+    /* Adjust main content to take more space on medium screens */
+    .main-feed {
+        width: 100%;
+        /* Full width on medium screens */
+    }
+
+    .col-lg-9 {
+        width: 100%;
+        /* Ensure main content takes full width when right sidebar is hidden */
+    }
+}
+
+@media (max-width: 767.98px) {
+    .navbar-collapse {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-nav {
+        justify-content: flex-start;
+    }
+
+    .search-bar {
+        margin-right: 0;
+    }
+
+    .left-sidebar {
+        display: none;
+        /* Hide left sidebar on small screens for cleaner view */
+    }
+
+    .main-feed {
+        width: 100%;
+    }
+
+    .people-you-may-know-card .profile-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        /* Smaller grid items */
+    }
+}

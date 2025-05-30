@@ -1,0 +1,150 @@
+/* Custom CSS for LinkedIn-like styling */
+body {
+    background-color: #f3f2ef;
+    font-family: 'Inter', sans-serif;
+    /* Using Inter font */
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+    position: relative;
+    /* Needed for search overlay positioning */
+    z-index: 1000;
+    /* Ensure navbar is on top */
+}
+
+.navbar-brand .linkedin-logo {
+    color: #0a66c2;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.search-bar-wrapper {
+    position: relative;
+    flex-grow: 1;
+    /* Allow search bar to grow */
+    max-width: 280px;
+    /* Max width for search bar */
+    margin-right: 15px;
+}
+
+.search-bar {
+    background-color: #eef3f8;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
+.search-bar input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 0.9rem;
+    padding: 0;
+    width: calc(100% - 25px);
+    /* Adjust for icon */
+}
+
+.nav-link {
+    color: #666;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.nav-link:hover {
+    color: #333;
+    background-color: #eef3f8;
+}
+
+.nav-link .fa-icon {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 3px;
+}
+
+/* Search Preview Overlay */
+.search-preview {
+    position: absolute;
+    top: 100%;
+    /* Position below the search bar */
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 10px 0;
+    display: none;
+    /* Hidden by default */
+    z-index: 999;
+    /* Below navbar, above content */
+}
+
+.search-preview-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-preview-item:hover {
+    background-color: #f3f2ef;
+}
+
+.search-preview-item .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.search-preview-item .item-info h6 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-preview-item .item-info p {
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-preview-item.group .profile-img {
+    border-radius: 4px;
+    /* Square for groups */
+}
+
+.search-preview .see-all-results {
+    display: block;
+    padding: 10px 15px;
+    text-align: center;
+    color: #0a66c2;
+    font-weight: 600;
+    text-decoration: none;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+.search-preview .see-all-results:hover {
+    background-color: #f3f2ef;
+}
