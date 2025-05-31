@@ -10,12 +10,37 @@
     <div class="login-container">
         <i class="fab fa-linkedin linkedin-logo"></i>
         <h2>Sign in</h2>
-        <form id="loginForm">
+
+        @if(session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('auth.authenticate') }}">
+            @csrf
             <div class="mb-3">
-                <input type="email" class="form-control" id="email" placeholder="Email or Phone" required>
+                <input type="email" class="form-control @error('email') is-invalid @enderror"
+                    name="email" id="email" value="{{ old('email') }}"
+                    placeholder="Email or Phone" required autofocus>
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                    name="password" id="password" placeholder="Password" required>
+                @error('password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3 form-check" style="text-align: left;">
+                <input type="checkbox" class="form-check-input" name="remember" id="remember">
+                <label class="form-check-label" for="remember">Remember me</label>
             </div>
             <button type="submit" class="btn btn-login">Sign in</button>
             <a href="{{ route('auth.forgot-password') }}" class="forgot-password-link">Forgot password?</a>
