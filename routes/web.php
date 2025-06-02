@@ -54,6 +54,27 @@ Route::middleware('auth')->group(function () {
     Route::get('/messaging', [MessagingController::class, 'index'])->name('messaging');
     Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+    // Profile update routes
+    Route::post('/profile/update-intro', [ProfileController::class, 'updateIntro'])->name('profile.updateIntro');
+    Route::post('/profile/update-about', [ProfileController::class, 'updateAbout'])->name('profile.updateAbout');
+    Route::post('/profile/update-profile-picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.updateProfilePicture');
+    Route::post('/profile/update-cover-photo', [ProfileController::class, 'updateCoverPhoto'])->name('profile.updateCoverPhoto');
+
+    // Experience routes
+    Route::post('/profile/add-experience', [ProfileController::class, 'addExperience'])->name('profile.addExperience');
+
+    // Add Education
+    Route::post('/profile/add-education', [ProfileController::class, 'addEducation'])->name('profile.addEducation');
+
+    // Add License or Certification
+    Route::post('/profile/add-license-certification', [ProfileController::class, 'addLicenseOrCertification'])->name('profile.addLicenseOrCertification');
+
+    // Add Skill
+    Route::post('/profile/add-skill', [ProfileController::class, 'addSkill'])->name('profile.addSkill');
+
+    // Add Language
+    Route::post('/profile/add-language', [ProfileController::class, 'addLanguage'])->name('profile.addLanguage');
 });
 
 require __DIR__.'/auth.php';

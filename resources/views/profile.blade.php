@@ -4,6 +4,11 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('frontend/css/profile.css') }}">
+    <style>
+        .language-item, .skill-item {
+            margin-bottom: 10px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -11,18 +16,24 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="card profile-header-card">
-                    <div class="profile-bg">
+                    <div class="profile-bg" @if($profile->cover_photo) style="background-image: url('{{ asset('storage/' . $profile->cover_photo) }}')" @endif>
                         <div class="edit-icon" data-bs-toggle="modal" data-bs-target="#editBannerModal">
                             <i class="fas fa-pencil-alt"></i>
                         </div>
                     </div>
-                    <div class="profile-img" data-bs-toggle="modal" data-bs-target="#profilePhotoUploadModal"></div>
+                    <div class="profile-img" id="auth-user-profile-img" data-bs-toggle="modal" data-bs-target="#profilePhotoUploadModal">
+                        @if ($profile->profile_picture)
+                            <img src="{{ asset('storage/' . $profile->profile_picture) }}" alt="Profile Picture">
+                        @else
+                            <div class="profile-img-initials">{{ substr($user->name, 0, 1) }}{{ substr(strrchr($user->name, ' '), 1, 1) }}</div>
+                        @endif
+                    </div>
                     <div class="profile-info">
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
-                                <h3>John Doe</h3>
-                                <p class="mb-1">Senior Software Engineer at Tech Corp | Passionate about AI & Web Development</p>
-                                <p class="text-muted mb-1">San Francisco Bay Area • 500+ connections <a href="#" class="contact-info-link" data-bs-toggle="modal" data-bs-target="#contactInfoModal">Contact info</a></p>
+                                <h3>{{ $user->name }}</h3>
+                                <p class="mb-1">{{ $profile->headline ?? 'Add a headline' }}</p>
+                                <p class="text-muted mb-1">{{ $profile->location ?? 'Add a location' }} • 500+ connections <a href="#" class="contact-info-link" data-bs-toggle="modal" data-bs-target="#contactInfoModal">Contact info</a></p>
                             </div>
                             <div class="edit-icon" data-bs-toggle="modal" data-bs-target="#editIntroModal">
                                 <i class="fas fa-pencil-alt"></i>
@@ -44,7 +55,7 @@
                         </div>
                     </div>
                     <div class="card-body about-section">
-                        <p>Experienced Senior Software Engineer with a strong background in developing scalable web applications and a keen interest in artificial intelligence. Proven ability to lead complex projects, collaborate with cross-functional teams, and deliver high-quality software solutions. Committed to continuous learning and leveraging cutting-edge technologies to solve real-world problems.</p>
+                        <p>{{ $profile->about ?? 'Tell us about yourself...' }}</p>
                     </div>
                 </div>
 
@@ -56,26 +67,21 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="experience-item">
-                            <div class="company-logo"><i class="fas fa-briefcase"></i></div>
-                            <div class="details">
-                                <h6>Senior Software Engineer</h6>
-                                <p>Tech Corp</p>
-                                <p class="text-muted">Jan 2020 – Present • 4 yrs 5 mos</p>
-                                <p class="text-muted">San Francisco Bay Area</p>
-                                <p class="description">Leading the development of new features for our flagship SaaS product using React, Node.js, and AWS. Mentored junior engineers and contributed to architectural decisions.</p>
+                        {{-- Dynamic Experience will be loaded here --}}
+                        @forelse ($profile->experience as $experience)
+                            <div class="experience-item">
+                                <div class="company-logo"><i class="fas fa-briefcase"></i></div>
+                                <div class="details">
+                                    <h6>{{ $experience['title'] }}</h6>
+                                    <p>{{ $experience['company'] }}</p>
+                                    <p class="text-muted">{{ $experience['start_date'] }} – {{ $experience['end_date'] ?? 'Present' }}</p>
+                                    <p class="text-muted">{{ $experience['location'] }}</p>
+                                    <p class="description">{{ $experience['description'] }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="experience-item">
-                            <div class="company-logo"><i class="fas fa-briefcase"></i></div>
-                            <div class="details">
-                                <h6>Software Engineer</h6>
-                                <p>Innovate Solutions</p>
-                                <p class="text-muted">Jun 2017 – Dec 2019 • 2 yrs 7 mos</p>
-                                <p class="text-muted">Seattle, Washington</p>
-                                <p class="description">Developed and maintained RESTful APIs for mobile applications. Collaborated with product teams to gather requirements and design solutions.</p>
-                            </div>
-                        </div>
+                        @empty
+                            <p>No experience added yet.</p>
+                        @endforelse
                     </div>
                 </div>
 
@@ -87,22 +93,19 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="education-item">
-                            <div class="school-logo"><i class="fas fa-graduation-cap"></i></div>
-                            <div class="details">
-                                <h6>University of California, Berkeley</h6>
-                                <p>Master of Science - MS, Computer Science</p>
-                                <p class="text-muted">2016 – 2017</p>
+                         {{-- Dynamic Education will be loaded here --}}
+                        @forelse ($profile->education as $education)
+                            <div class="education-item">
+                                <div class="school-logo"><i class="fas fa-graduation-cap"></i></div>
+                                <div class="details">
+                                    <h6>{{ $education['school'] }}</h6>
+                                    <p>{{ $education['degree'] }}</p>
+                                    <p class="text-muted">{{ $education['start_date'] }} – {{ $education['end_date'] ?? 'Present' }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="education-item">
-                            <div class="school-logo"><i class="fas fa-graduation-cap"></i></div>
-                            <div class="details">
-                                <h6>University of Washington</h6>
-                                <p>Bachelor of Science - BS, Computer Science</p>
-                                <p class="text-muted">2012 – 2016</p>
-                            </div>
-                        </div>
+                        @empty
+                             <p>No education added yet.</p>
+                        @endforelse
                     </div>
                 </div>
 
@@ -114,22 +117,58 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="license-item">
-                            <div class="badge-icon"><i class="fas fa-certificate"></i></div>
-                            <div class="details">
-                                <h6>AWS Certified Solutions Architect – Associate</h6>
-                                <p>Amazon Web Services (AWS)</p>
-                                <p class="text-muted">Issued: Jan 2023</p>
+                         {{-- Dynamic Certifications will be loaded here --}}
+                        @forelse ($profile->certifications as $certification)
+                             <div class="license-item">
+                                <div class="badge-icon"><i class="fas fa-certificate"></i></div>
+                                <div class="details">
+                                     <h6>{{ $certification['name'] }}</h6>
+                                     <p>{{ $certification['issuing_organization'] }}</p>
+                                     <p class="text-muted">Issued: {{ $certification['issue_date'] }} {{ $certification['expiry_date'] ? ' - Expires: ' . $certification['expiry_date'] : '' }}</p>
+                                </div>
                             </div>
+                        @empty
+                            <p>No licenses or certifications added yet.</p>
+                        @endforelse
+                    </div>
+                </div>
+
+                <div class="card section-card mt-3">
+                    <div class="card-header">
+                        <h5>Skills</h5>
+                        <div class="edit-add-icons">
+                            <i class="fas fa-plus" data-bs-toggle="modal" data-bs-target="#addSkillModal"></i>
                         </div>
-                        <div class="license-item">
-                            <div class="badge-icon"><i class="fas fa-certificate"></i></div>
-                            <div class="details">
-                                <h6>Professional Scrum Master™ I (PSM I)</h6>
-                                <p>Scrum.org</p>
-                                <p class="text-muted">Issued: Oct 2022</p>
+                    </div>
+                    <div class="card-body">
+                         {{-- Dynamic Skills will be loaded here --}}
+                        @forelse ($profile->skills as $skill)
+                            <div class="skill-item">
+                                <div class="skill-name">{{ $skill['name'] }}</div>
                             </div>
+                        @empty
+                            <p>No skills added yet.</p>
+                        @endforelse
+                    </div>
+                </div>
+
+                <div class="card section-card mt-3">
+                    <div class="card-header">
+                        <h5>Languages</h5>
+                        <div class="edit-add-icons">
+                            <i class="fas fa-plus" data-bs-toggle="modal" data-bs-target="#addLanguageModal"></i>
                         </div>
+                    </div>
+                    <div class="card-body">
+                         {{-- Dynamic Languages will be loaded here --}}
+                        @forelse ($profile->languages as $language)
+                            <div class="language-item">
+                                <div class="language-name">{{ $language['name'] }}</div>
+                                <div class="language-proficiency text-muted">{{ ucfirst(str_replace('_', ' ', $language['proficiency'])) }}</div>
+                            </div>
+                        @empty
+                            <p>No languages added yet.</p>
+                        @endforelse
                     </div>
                 </div>
 
@@ -188,10 +227,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="file-upload-dropzone" id="profilePhotoDropzone">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <p>Drag and drop a new photo here</p>
-                        <small>or click to browse</small>
-                        <input type="file" class="file-upload-input" id="profilePhotoInput" accept="image/*">
+                        <label for="profilePhotoInput" class="btn btn-outline-primary">Choose Image</label>
+                        <input type="file" class="file-upload-input" id="profilePhotoInput" accept="image/*" style="display: none;">
                     </div>
                     <div class="text-center mt-3">
                         <img id="profilePhotoPreview" class="image-preview" src="" alt="Profile Photo Preview" style="display: none;">
@@ -213,11 +250,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="bannerFileInput" class="form-label">Upload new banner image</label>
-                        <input class="form-control" type="file" id="bannerFileInput" accept="image/*">
+                    <div class="file-upload-dropzone" id="bannerPhotoDropzone">
+                        <label for="bannerFileInput" class="btn btn-outline-primary">Choose Image</label>
+                         <input class="form-control file-upload-input" type="file" id="bannerFileInput" accept="image/*" style="display: none;">
                     </div>
-                    <div class="text-center">
+                     <div class="text-center mt-3">
+                        <img id="bannerPhotoPreview" class="image-preview" src="" alt="Banner Photo Preview" style="display: none;">
+                    </div>
+                    <div class="text-center mt-3">
                         <small class="text-muted">Recommended size: 1584 x 396 pixels</small>
                     </div>
                 </div>
@@ -239,23 +279,24 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First name*</label>
-                        <input type="text" class="form-control" id="firstName" value="John">
+                        <input type="text" class="form-control" id="firstName" value="{{ $user->name ? explode(' ', $user->name)[0] : '' }}">
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last name*</label>
-                        <input type="text" class="form-control" id="lastName" value="Doe">
+                        <input type="text" class="form-control" id="lastName" value="{{ $user->name ? (count(explode(' ', $user->name)) > 1 ? explode(' ', $user->name)[count(explode(' ', $user->name)) - 1] : '') : '' }}">
                     </div>
                     <div class="mb-3">
                         <label for="headline" class="form-label">Headline*</label>
-                        <input type="text" class="form-control" id="headline" value="Senior Software Engineer at Tech Corp | Passionate about AI & Web Development">
+                        <input type="text" class="form-control" id="headline" value="{{ $profile->headline ?? '' }}">
                     </div>
-                    <div class="mb-3">
-                        <label for="currentPosition" class="form-label">Current position</label>
-                        <input type="text" class="form-control" id="currentPosition" value="Senior Software Engineer at Tech Corp">
-                    </div>
+                     {{-- Current position is derived from experience, so no direct input here --}}
                     <div class="mb-3">
                         <label for="location" class="form-label">Location</label>
-                        <input type="text" class="form-control" id="location" value="San Francisco Bay Area">
+                        <input type="text" class="form-control" id="location" value="{{ $profile->location ?? '' }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="industry" class="form-label">Industry</label>
+                        <input type="text" class="form-control" id="industry" value="{{ $profile->industry ?? '' }}">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -270,14 +311,12 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="contactInfoModalLabel">John Doe's Contact Info</h5>
+                    <h5 class="modal-title" id="contactInfoModalLabel">{{ $user->name }}'s Contact Info</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p><i class="fas fa-envelope me-2"></i> Email: <a href="mailto:john.doe@example.com">john.doe@example.com</a></p>
-                    <p><i class="fas fa-phone me-2"></i> Phone: +1 123-456-7890</p>
-                    <p><i class="fas fa-globe me-2"></i> Website: <a href="http://www.johndoeportfolio.com" target="_blank">www.johndoeportfolio.com</a></p>
-                    <p><i class="fab fa-linkedin me-2"></i> LinkedIn profile: <a href="#" target="_blank">linkedin.com/in/johndoe</a></p>
+                    <p><i class="fas fa-envelope me-2"></i> Email: <a href="mailto:{{ $user->email }}">{{ $user->email }}</a></p>
+                    {{-- Add other contact info fields from profile table if available --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -296,7 +335,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="aboutContent" class="form-label">Summary</label>
-                        <textarea class="form-control" id="aboutContent" rows="6">Experienced Senior Software Engineer with a strong background in developing scalable web applications and a keen interest in artificial intelligence. Proven ability to lead complex projects, collaborate with cross-functional teams, and deliver high-quality software solutions. Committed to continuous learning and leveraging cutting-edge technologies to solve real-world problems.</textarea>
+                        <textarea class="form-control" id="aboutContent" rows="6">{{ $profile->about ?? '' }}</textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -447,8 +486,77 @@
             </div>
         </div>
     </div>
+
+    {{-- New Modals for Skills and Languages --}}
+
+    <div class="modal fade" id="addSkillModal" tabindex="-1" aria-labelledby="addSkillModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addSkillModalLabel">Add Skill</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="skillName" class="form-label">Skill*</label>
+                        <input type="text" class="form-control" id="skillName" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveSkillBtn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addLanguageModal" tabindex="-1" aria-labelledby="addLanguageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addLanguageModalLabel">Add Language</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="languageName" class="form-label">Language*</label>
+                        <input type="text" class="form-control" id="languageName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="languageProficiency" class="form-label">Proficiency Level*</label>
+                        <select class="form-select" id="languageProficiency" required>
+                            <option value="">Select proficiency</option>
+                            <option value="elementary">Elementary proficiency</option>
+                            <option value="limited_working">Limited working proficiency</option>
+                            <option value="professional_working">Professional working proficiency</option>
+                            <option value="full_professional">Full professional proficiency</option>
+                            <option value="native_bilingual">Native or bilingual proficiency</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveLanguageBtn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
+    <script>
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        // Define routes
+        const updateProfilePictureRoute = '{{ route('profile.updateProfilePicture') }}';
+        const updateCoverPhotoRoute = '{{ route('profile.updateCoverPhoto') }}';
+        const updateIntroRoute = '{{ route('profile.updateIntro') }}';
+        const updateAboutRoute = '{{ route('profile.updateAbout') }}';
+        const addExperienceRoute = '{{ route('profile.addExperience') }}';
+        const addEducationRoute = '{{ route('profile.addEducation') }}';
+        const addLicenseOrCertificationRoute = '{{ route('profile.addLicenseOrCertification') }}';
+        const addSkillRoute = '{{ route('profile.addSkill') }}';
+        const addLanguageRoute = '{{ route('profile.addLanguage') }}';
+    </script>
     <script src="{{ asset('frontend/js/profile.js') }}"></script>
 @endsection

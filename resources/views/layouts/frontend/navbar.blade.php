@@ -47,6 +47,14 @@
                         <i class="fas fa-th fa-icon"></i> Me
                     </a>
                 </li>
+                <li class="nav-item">
+                    <form action="{{ route('auth.logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="nav-link btn btn-link">
+                            <i class="fas fa-sign-out-alt fa-icon"></i> Logout
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
