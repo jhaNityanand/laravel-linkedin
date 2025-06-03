@@ -6,6 +6,59 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/jobs.css') }}">
 @endsection
 
+@php
+    $jobs = [
+        [
+            'title' => 'Senior Software Engineer',
+            'company' => 'Tech Solutions Inc.',
+            'location' => 'San Francisco, CA',
+            'posted' => '1 day ago',
+            'easy_apply' => true,
+            'description' => 'We are seeking a highly skilled Senior Software Engineer to join our dynamic team. You will be responsible for designing, developing, and maintaining scalable software solutions. Requires 5+ years of experience with modern web technologies (React, Node.js) and cloud platforms (AWS/Azure). Strong problem-solving skills and a passion for building high-quality software are essential.'
+        ],
+        [
+            'title' => 'Product Manager',
+            'company' => 'Innovate Corp',
+            'location' => 'New York, NY',
+            'posted' => '3 days ago',
+            'easy_apply' => false,
+            'description' => 'Innovate Corp is looking for an experienced Product Manager to lead the development of our next-generation mobile application. You will define product strategy, roadmap, and specifications, working closely with engineering, design, and marketing teams. A strong understanding of user experience and market trends is crucial.'
+        ],
+        [
+            'title' => 'UX Designer',
+            'company' => 'Creative Studio',
+            'location' => 'Remote',
+            'posted' => '5 days ago',
+            'easy_apply' => true,
+            'description' => 'Creative Studio is seeking a talented UX Designer to create intuitive and engaging user experiences for our digital products. You will conduct user research, create wireframes and prototypes, and collaborate with cross-functional teams. Proficiency in Figma/Sketch and a strong portfolio are required.'
+        ],
+        [
+            'title' => 'Laravel Developer',
+            'company' => 'CodeCraftsmen Pvt Ltd',
+            'location' => 'Delhi, India',
+            'posted' => '2 days ago',
+            'easy_apply' => true,
+            'description' => 'We are hiring a Laravel Developer with 2+ years of experience in PHP and Laravel frameworks. Responsibilities include API integration, MySQL optimization, and building admin panels.'
+        ],
+        [
+            'title' => 'Junior QA Tester',
+            'company' => 'Testly Software',
+            'location' => 'Bangalore, India',
+            'posted' => 'Today',
+            'easy_apply' => false,
+            'description' => 'Entry-level QA Tester needed to assist with writing test cases, performing manual tests, and documenting bugs. No prior experience required but basic understanding of SDLC preferred.'
+        ],
+        [
+            'title' => 'DevOps Engineer',
+            'company' => 'CloudX Solutions',
+            'location' => 'Remote',
+            'posted' => '4 days ago',
+            'easy_apply' => true,
+            'description' => 'Looking for a DevOps Engineer experienced in CI/CD, Docker, Kubernetes, and cloud infrastructure automation. Strong Linux and scripting knowledge is a must.'
+        ]
+    ];
+@endphp
+
 @section('content')
     <div class="container main-content">
         <div class="row">
@@ -84,64 +137,31 @@
             <div class="col-lg-9 main-feed">
                 <h5 class="mb-3">Recommended jobs for you</h5>
 
-                <div class="card job-listing-card" data-bs-toggle="modal" data-bs-target="#jobDetailsModal"
-                    data-job-title="Senior Software Engineer"
-                    data-company-name="Tech Solutions Inc."
-                    data-location="San Francisco, CA"
-                    data-posted-time="1 day ago"
-                    data-easy-apply="true"
-                    data-description="We are seeking a highly skilled Senior Software Engineer to join our dynamic team. You will be responsible for designing, developing, and maintaining scalable software solutions. Requires 5+ years of experience with modern web technologies (React, Node.js) and cloud platforms (AWS/Azure). Strong problem-solving skills and a passion for building high-quality software are essential.">
-                    <div class="card-body d-flex align-items-start">
-                        <div class="company-logo"></div>
-                        <div>
-                            <h6 class="job-title">Senior Software Engineer</h6>
-                            <p class="company-name">Tech Solutions Inc.</p>
-                            <p class="job-location">San Francisco, CA</p>
-                            <p class="job-posted">1 day ago</p>
-                            <span class="easy-apply-badge">Easy Apply</span>
-                            <p class="job-description-snippet">We are seeking a highly skilled Senior Software Engineer to join our dynamic team. You will be responsible for designing, developing, and maintaining scalable software solutions...</p>
-                        </div>
-                    </div>
-                </div>
+                @foreach($jobs as $job)
+                    <div class="card job-listing-card" data-bs-toggle="modal" data-bs-target="#jobDetailsModal"
+                        data-job-title="{{ $job['title'] }}"
+                        data-company-name="{{ $job['company'] }}"
+                        data-location="{{ $job['location'] }}"
+                        data-posted-time="{{ $job['posted'] }}"
+                        data-easy-apply="{{ $job['easy_apply'] ? 'true' : 'false' }}"
+                        data-description="{{ $job['description'] }}">
 
-                <div class="card job-listing-card" data-bs-toggle="modal" data-bs-target="#jobDetailsModal"
-                    data-job-title="Product Manager"
-                    data-company-name="Innovate Corp"
-                    data-location="New York, NY"
-                    data-posted-time="3 days ago"
-                    data-easy-apply="false"
-                    data-description="Innovate Corp is looking for an experienced Product Manager to lead the development of our next-generation mobile application. You will define product strategy, roadmap, and specifications, working closely with engineering, design, and marketing teams. A strong understanding of user experience and market trends is crucial.">
-                    <div class="card-body d-flex align-items-start">
-                        <div class="company-logo"></div>
-                        <div>
-                            <h6 class="job-title">Product Manager</h6>
-                            <p class="company-name">Innovate Corp</p>
-                            <p class="job-location">New York, NY</p>
-                            <p class="job-posted">3 days ago</p>
-                            <p class="job-description-snippet">Innovate Corp is looking for an experienced Product Manager to lead the development of our next-generation mobile application. You will define product strategy...</p>
+                        <div class="card-body d-flex align-items-start">
+                            <div class="company-logo"></div>
+                            <div>
+                                <h6 class="job-title">{{ $job['title'] }}</h6>
+                                <p class="company-name">{{ $job['company'] }}</p>
+                                <p class="job-location">{{ $job['location'] }}</p>
+                                <p class="job-posted">{{ $job['posted'] }}</p>
+                                @if($job['easy_apply'])
+                                    <span class="easy-apply-badge">Easy Apply</span>
+                                @endif
+                                <p class="job-description-snippet">{{ \Illuminate\Support\Str::limit($job['description'], 150, '...') }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-                <div class="card job-listing-card" data-bs-toggle="modal" data-bs-target="#jobDetailsModal"
-                    data-job-title="UX Designer"
-                    data-company-name="Creative Studio"
-                    data-location="Remote"
-                    data-posted-time="5 days ago"
-                    data-easy-apply="true"
-                    data-description="Creative Studio is seeking a talented UX Designer to create intuitive and engaging user experiences for our digital products. You will conduct user research, create wireframes and prototypes, and collaborate with cross-functional teams. Proficiency in Figma/Sketch and a strong portfolio are required.">
-                    <div class="card-body d-flex align-items-start">
-                        <div class="company-logo"></div>
-                        <div>
-                            <h6 class="job-title">UX Designer</h6>
-                            <p class="company-name">Creative Studio</p>
-                            <p class="job-location">Remote</p>
-                            <p class="job-posted">5 days ago</p>
-                            <span class="easy-apply-badge">Easy Apply</span>
-                            <p class="job-description-snippet">Creative Studio is seeking a talented UX Designer to create intuitive and engaging user experiences for our digital products. You will conduct user research...</p>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="text-center mt-4">
                     <a href="#" class="text-decoration-none text-primary show-all-link">View all 100+ jobs <i class="fas fa-arrow-right ms-1"></i></a>

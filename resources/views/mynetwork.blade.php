@@ -6,6 +6,32 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/mynetwork.css') }}">
 @endsection
 
+@php
+    $invitations = [
+        ['name' => 'Harry Patel', 'title' => 'Web Developer', 'mutual' => 49],
+        ['name' => 'Anjali Verma', 'title' => 'Frontend Developer', 'mutual' => 32],
+        ['name' => 'Rohit Sharma', 'title' => 'Laravel Developer', 'mutual' => 21],
+        ['name' => 'Priya Singh', 'title' => 'PHP Developer', 'mutual' => 14],
+        ['name' => 'Rajeev Ranjan', 'title' => 'React Developer', 'mutual' => 60],
+        ['name' => 'Neha Das', 'title' => 'QA Engineer', 'mutual' => 12],
+        ['name' => 'Suresh Yadav', 'title' => 'Backend Developer', 'mutual' => 45],
+        ['name' => 'Divya Joshi', 'title' => 'UX Designer', 'mutual' => 27],
+        ['name' => 'Kunal Mehta', 'title' => 'Fullstack Developer', 'mutual' => 50],
+        ['name' => 'Sanya Kapoor', 'title' => 'Junior Developer', 'mutual' => 33],
+    ];
+
+    $peopleYouMayKnow = [
+        ['name' => 'Jesus Rosas Becerra', 'title' => 'Jr. Android Developer', 'mutual' => 1],
+        ['name' => 'Roland Roland Pall', 'title' => 'Frontend Developer', 'mutual' => 2],
+        ['name' => 'Manasvi Lathiya', 'title' => 'Software Developer', 'mutual' => 3],
+        ['name' => 'Shivani Jadav', 'title' => 'Software Developer', 'mutual' => 1],
+        ['name' => 'Aman Sinha', 'title' => 'React Native Developer', 'mutual' => 5],
+        ['name' => 'Divyansh Tiwari', 'title' => 'Backend Engineer', 'mutual' => 7],
+        ['name' => 'Tanya Khurana', 'title' => 'UI Designer', 'mutual' => 2],
+        ['name' => 'Imran Khan', 'title' => 'Python Developer', 'mutual' => 6],
+    ];
+@endphp
+
 @section('content')
     <div class="container main-content">
         <div class="row">
@@ -47,22 +73,26 @@
             <div class="col-lg-9 main-feed">
                 <div class="card invitations-card">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                        <h6 class="mb-0">Invitations (1)</h6>
+                        <h6 class="mb-0">Invitations ({{ count($invitations) }})</h6>
                         <a href="#" class="text-decoration-none text-primary show-all-link">Show all</a>
                     </div>
                     <div class="card-body">
-                        <div class="invitation-item">
-                            <div class="profile-img"></div>
-                            <div class="invitation-info">
-                                <h6>Harry Patel</h6>
-                                <p>Web Developer</p>
-                                <p class="text-muted mb-0" style="font-size: 0.75rem;"><i class="fas fa-users me-1"></i> 49 mutual connections</p>
+                        @foreach($invitations as $invite)
+                            <div class="invitation-item">
+                                <div class="profile-img"></div>
+                                <div class="invitation-info">
+                                    <h6>{{ $invite['name'] }}</h6>
+                                    <p>{{ $invite['title'] }}</p>
+                                    <p class="text-muted mb-0" style="font-size: 0.75rem;">
+                                        <i class="fas fa-users me-1"></i> {{ $invite['mutual'] }} mutual connections
+                                    </p>
+                                </div>
+                                <div class="invitation-actions">
+                                    <button class="btn btn-outline-secondary btn-ignore">Ignore</button>
+                                    <button class="btn btn-primary btn-accept" data-bs-toggle="modal" data-bs-target="#successModal">Accept</button>
+                                </div>
                             </div>
-                            <div class="invitation-actions">
-                                <button class="btn btn-outline-secondary btn-ignore">Ignore</button>
-                                <button class="btn btn-primary btn-accept" data-bs-toggle="modal" data-bs-target="#successModal">Accept</button>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
 
@@ -122,39 +152,19 @@
                     </div>
                     <div class="card-body">
                         <div class="profile-grid">
-                            <div class="profile-item">
-                                <button class="profile-close-btn"><i class="fas fa-times"></i></button>
-                                <div class="profile-img"></div>
-                                <h6>Jesus Rosas Becerra</h6>
-                                <p>Jr. Android Developer</p>
-                                <p class="text-muted mb-2" style="font-size: 0.7rem;"><i class="fas fa-users me-1"></i> 1 mutual connection</p>
-                                <button class="btn btn-connect" data-bs-toggle="modal" data-bs-target="#successModal">Connect</button>
-                            </div>
-                            <div class="profile-item">
-                                <button class="profile-close-btn"><i class="fas fa-times"></i></button>
-                                <div class="profile-img"></div>
-                                <h6>Roland Roland Pall</h6>
-                                <p>Frontend Developer</p>
-                                <p class="text-muted mb-2" style="font-size: 0.7rem;"><i class="fas fa-users me-1"></i> 1 mutual connection</p>
-                                <button class="btn btn-connect" data-bs-toggle="modal" data-bs-target="#successModal">Connect</button>
-                            </div>
-                            <div class="profile-item">
-                                <button class="profile-close-btn"><i class="fas fa-times"></i></button>
-                                <div class="profile-img"></div>
-                                <h6>Manasvi Lathiya</h6>
-                                <p>Software Developer</p>
-                                <p class="text-muted mb-2" style="font-size: 0.7rem;"><i class="fas fa-users me-1"></i> 1 mutual connection</p>
-                                <button class="btn btn-connect" data-bs-toggle="modal" data-bs-target="#successModal">Connect</button>
-                            </div>
-                            <div class="profile-item">
-                                <button class="profile-close-btn"><i class="fas fa-times"></i></button>
-                                <div class="profile-img"></div>
-                                <h6>Shivani Jadav</h6>
-                                <p>Software Developer</p>
-                                <p class="text-muted mb-2" style="font-size: 0.7rem;"><i class="fas fa-users me-1"></i> 1 mutual connection</p>
-                                <button class="btn btn-connect" data-bs-toggle="modal" data-bs-target="#successModal">Connect</button>
-                            </div>
-                            </div>
+                            @foreach($peopleYouMayKnow as $person)
+                                <div class="profile-item">
+                                    <button class="profile-close-btn"><i class="fas fa-times"></i></button>
+                                    <div class="profile-img"></div>
+                                    <h6>{{ $person['name'] }}</h6>
+                                    <p>{{ $person['title'] }}</p>
+                                    <p class="text-muted mb-2" style="font-size: 0.7rem;">
+                                        <i class="fas fa-users me-1"></i> {{ $person['mutual'] }} mutual connection{{ $person['mutual'] > 1 ? 's' : '' }}
+                                    </p>
+                                    <button class="btn btn-connect" data-bs-toggle="modal" data-bs-target="#successModal">Connect</button>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 

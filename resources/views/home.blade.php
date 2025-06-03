@@ -81,6 +81,84 @@
                         <div class="post-header">
                             <div class="profile-img"></div>
                             <div class="post-meta">
+                                <h6>Priya Mehta</h6>
+                                <p>UX Designer at Zeta • 3h</p>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>Thrilled to have completed our latest usability study! The insights gathered will directly impact our product roadmap. User empathy always leads the way. #UXDesign #UserResearch</p>
+                        </div>
+                        <div class="post-stats">
+                            <span><i class="fas fa-thumbs-up text-primary"></i> 89</span>
+                            <span>12 comments • 3 shares</span>
+                        </div>
+                        <div class="d-flex justify-content-around post-actions">
+                            <button class="btn btn-light"><i class="far fa-thumbs-up fa-icon"></i> Like</button>
+                            <button class="btn btn-light"><i class="far fa-comment-dots fa-icon"></i> Comment</button>
+                            <button class="btn btn-light"><i class="fas fa-share fa-icon"></i> Share</button>
+                            <button class="btn btn-light"><i class="fas fa-paper-plane fa-icon"></i> Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card post-card mt-3">
+                    <div class="card-body">
+                        <div class="post-header">
+                            <div class="profile-img"></div>
+                            <div class="post-meta">
+                                <h6>Arjun Kapoor</h6>
+                                <p>Full Stack Developer • 5h</p>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>🚀 Just deployed a microservices-based architecture using Laravel Octane + Docker + RabbitMQ for a fintech client. The performance gains are insane! Let me know if you're interested in a case study. #Laravel #Docker #Microservices</p>
+                        </div>
+                        <div class="post-image">
+                            <img src="https://placehold.co/600x300/ddeeff/333?text=System+Architecture+Diagram" alt="Architecture Diagram" class="img-fluid rounded">
+                        </div>
+                        <div class="post-stats">
+                            <span><i class="fas fa-thumbs-up text-primary"></i> 302</span>
+                            <span>55 comments • 20 shares</span>
+                        </div>
+                        <div class="d-flex justify-content-around post-actions">
+                            <button class="btn btn-light"><i class="far fa-thumbs-up fa-icon"></i> Like</button>
+                            <button class="btn btn-light"><i class="far fa-comment-dots fa-icon"></i> Comment</button>
+                            <button class="btn btn-light"><i class="fas fa-share fa-icon"></i> Share</button>
+                            <button class="btn btn-light"><i class="fas fa-paper-plane fa-icon"></i> Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card post-card mt-3">
+                    <div class="card-body">
+                        <div class="post-header">
+                            <div class="profile-img"></div>
+                            <div class="post-meta">
+                                <h6>Anjali Rao</h6>
+                                <p>HR Manager at FinEdge • 10h</p>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>We’re hiring! Looking for passionate engineers who want to build meaningful tech in the finance space. Culture, growth, and purpose are at the heart of our company. DM for referrals! #Hiring #EngineeringJobs #Fintech</p>
+                        </div>
+                        <div class="post-stats">
+                            <span><i class="fas fa-thumbs-up text-primary"></i> 210</span>
+                            <span>18 comments • 5 shares</span>
+                        </div>
+                        <div class="d-flex justify-content-around post-actions">
+                            <button class="btn btn-light"><i class="far fa-thumbs-up fa-icon"></i> Like</button>
+                            <button class="btn btn-light"><i class="far fa-comment-dots fa-icon"></i> Comment</button>
+                            <button class="btn btn-light"><i class="fas fa-share fa-icon"></i> Share</button>
+                            <button class="btn btn-light"><i class="fas fa-paper-plane fa-icon"></i> Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card post-card mt-3">
+                    <div class="card-body">
+                        <div class="post-header">
+                            <div class="profile-img"></div>
+                            <div class="post-meta">
                                 <h6>Sarah Johnson</h6>
                                 <p>Product Manager at Microsoft • 2h</p>
                             </div>
